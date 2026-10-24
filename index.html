@@ -1,37 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VISION EXPERIENCE PRO</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VISION EXPERIENCE PRO</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#111;color:#f8f5ee;font-family:Arial,sans-serif}header{padding:28px 20px;text-align:center;border-bottom:1px solid #8b733a}h1,h2{color:#d7b66d}h1{letter-spacing:3px}main{max-width:850px;margin:auto;padding:25px}section{background:#1e1e1e;padding:25px;border-radius:15px;margin:20px 0}label{display:block;margin-top:16px}input,select{width:100%;padding:13px;margin-top:8px;border:1px solid #aa9258;border-radius:8px;background:#292929;color:white}button{background:#d7b66d;color:#111;border:0;border-radius:8px;padding:14px 22px;margin-top:20px;font-weight:bold;cursor:pointer}.resultado{background:#29251c;padding:20px;margin-top:20px;border-radius:10px}footer{text-align:center;padding:30px;color:#bcb4a2}
-</style></head>
-<body><header><h1>VISION EXPERIENCE PRO</h1><p>Imagina · Diseña · Hazlo realidad</p></header>
-<main><section><h2>Diseña tu experiencia</h2><p>Personaliza tu evento y descubre un presupuesto orientativo.</p>
-<label>Nombre del proyecto</label><input id="nombre" placeholder="Mi boda de ensueño">
-<label>Tipo de proyecto</label><select id="tipo"><option>Boda</option><option>Evento empresarial</option><option>Hotel</option><option>Decoración de interiores</option></select>
-<label>Estilo</label><select id="estilo"><option>Romántico</option><option>Lujo clásico</option><option>Moderno</option><option>Jardín encantado</option></select>
-<label>Decoración floral</label><select id="flores"><option value="450">Rosas blancas — 450 €</option><option value="650">Rosas rosas — 650 €</option><option value="900">Flores premium — 900 €</option></select>
-<label>Número de invitados</label><input id="invitados" type="number" min="1" value="50">
-<button onclick="crear()">Crear mi proyecto</button><div id="resultado" class="resultado" hidden></div></section>
-<section><h2>Mis proyectos</h2><div id="proyectos">Todavía no hay proyectos guardados.</div></section></main>
-<footer>VISION EXPERIENCE PRO · Versión de demostración</footer>
-<script>
-const formato=n=>new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'}).format(n);
-function crear(){
-const nombre=document.getElementById('nombre').value.trim()||'Proyecto sin nombre';
-const tipo=document.getElementById('tipo').value;
-const estilo=document.getElementById('estilo').value;
-const flores=document.getElementById('flores');
-const invitados=Math.max(1,Number(document.getElementById('invitados').value)||1);
-const total=Number(flores.value)+invitados*35;
-const proyecto={nombre,tipo,estilo,flor:flores.options[flores.selectedIndex].text,invitados,total};
-const r=document.getElementById('resultado');r.hidden=false;
-r.textContent=nombre+' · '+tipo+' · '+estilo+' · '+invitados+' invitados · Presupuesto estimado: '+formato(total);
-try{const lista=JSON.parse(localStorage.getItem('visionProyectos')||'[]');lista.push(proyecto);localStorage.setItem('visionProyectos',JSON.stringify(lista));}catch(e){alert('No se pudo guardar en este navegador.');}
-mostrar();}
-function mostrar(){
-const cont=document.getElementById('proyectos');cont.replaceChildren();let lista=[];
-try{lista=JSON.parse(localStorage.getItem('visionProyectos')||'[]');}catch(e){}
-if(!lista.length){cont.textContent='Todavía no hay proyectos guardados.';return;}
-lista.forEach(p=>{const div=document.createElement('p');div.textContent=p.nombre+' — '+p.estilo+' — '+formato(p.total);cont.appendChild(div);});}
-mostrar();
-</script></body></html>
+body{background:#111;color:#d4af37;font-family:Arial,sans-serif;text-align:center;padding:70px 20px}
+h1{font-size:32px}
+p{color:white}
+</style>
+</head>
+<body>
+<h1>VISION EXPERIENCE PRO</h1>
+<p>Mi plataforma profesional está funcionando.</p>
+<p>Próximamente: bodas, eventos y diseño virtual.</p>
+</body>
+</html>
