@@ -10,10 +10,10 @@
 <body>
 <header><div><div class="brand">VISION EXPERIENCE PRO</div><div class="tag">Diseña · Visualiza · Presenta</div></div><div class="tag">Estudio creativo · Versión de demostración</div></header>
 <main class="wrap">
-<div class="intro"><div class="tag">Una experiencia antes de hacerla realidad</div><h1>Imagina cada detalle.<br>Diseña una experiencia única.</h1><p>Crea una propuesta visual, personaliza la decoración y prepara un presupuesto orientativo para presentar a tus clientes.</p></div>
+<div class="intro"><div class="tag">Una experiencia antes de hacerla realidad</div><h1>Imagina cada detalle.<br>Diseña una experiencia única.</h1><p>Crea una propuesta visual, personaliza la decoración y guarda tus ideas para explorarlas cuando quieras.</p></div>
 <div class="layout">
 <section class="panel" aria-labelledby="design-title"><h2 id="design-title">01 · Tu proyecto</h2>
-<label for="client">Nombre del cliente</label><input id="client" placeholder="Ej. Ana y Marcos" autocomplete="off">
+<label for="client">Tu nombre (opcional)</label><input id="client" placeholder="Ej. Ana y Marcos" autocomplete="off">
 <label for="name">Nombre del proyecto</label><input id="name" placeholder="Ej. Boda Jardín de Rosas" autocomplete="off">
 <label for="type">Tipo de proyecto</label><select id="type"><option>Boda</option><option>Evento privado</option><option>Evento corporativo</option><option>Hotel y restauración</option><option>Decoración de interiores</option></select>
 <label for="style">Estilo</label><select id="style"><option>Romántico</option><option>Clásico de lujo</option><option>Moderno</option><option>Jardín encantado</option><option>Mediterráneo</option></select>
@@ -74,7 +74,7 @@ function render(){const root=$('projects');root.replaceChildren();const items=re
 ids.forEach(id=>$(id).addEventListener('input',update));$('save').addEventListener('click',()=>{const d=data();if(!d.name.trim()){$('status').textContent='Escribe un nombre para el proyecto.';$('name').focus();return}const list=read();const item={...d,id:editing||String(Date.now()),total:update()};const i=list.findIndex(p=>p.id===item.id);if(i>=0)list[i]=item;else list.push(item);if(write(list)){$('status').textContent='Proyecto guardado en este navegador.';editing=item.id;render()}});$('reset').addEventListener('click',()=>{editing=null;ids.forEach(id=>{if($(id).tagName==='SELECT')$(id).selectedIndex=0;else $(id).value='' });$('guests').value=80;$('status').textContent='Nuevo proyecto listo.';update()});$('print').addEventListener('click',()=>window.print());update();render();
 })();
 </script>
-</body></html>
+<div style="max-width:900px;margin:28px auto;padding:16px 22px;border:1px solid #b99452;border-radius:12px;text-align:center;color:#b99452;background:#161616;font-family:Arial,sans-serif"><strong>VISION EXPERIENCE PRO · Solo diseño digital</strong><p style="color:#ddd">Diseña y visualiza tus ideas. No organizamos ni ejecutamos eventos ni proyectos físicos. Las imágenes con IA y los pagos todavía no están activos en esta demostración.</p></div></body></html>
 <a href="vision-experience-pro-mi-proyecto.html"
    style="
      display:block;
@@ -108,5 +108,5 @@ ids.forEach(id=>$(id).addEventListener('input',update));$('save').addEventListen
 <h1>VISION EXPERIENCE PRO</h1>
 <p style="color:white">Mi plataforma está funcionando.</p>
 <button onclick="alert('Bienvenida a VISION EXPERIENCE PRO')">Comenzar</button>
-</body>
+<div style="max-width:900px;margin:28px auto;padding:16px 22px;border:1px solid #b99452;border-radius:12px;text-align:center;color:#b99452;background:#161616;font-family:Arial,sans-serif"><strong>VISION EXPERIENCE PRO · Solo diseño digital</strong><p style="color:#ddd">Diseña y visualiza tus ideas. No organizamos ni ejecutamos eventos ni proyectos físicos. Las imágenes con IA y los pagos todavía no están activos en esta demostración.</p></div></body>
 </html>
