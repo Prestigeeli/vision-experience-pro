@@ -63,39 +63,7 @@ function render(){const root=$('projects');root.replaceChildren();const items=re
 ids.forEach(id=>$(id).addEventListener('input',update));$('save').addEventListener('click',()=>{const d=data();if(!d.name.trim()){$('status').textContent='Escribe un nombre para el proyecto.';$('name').focus();return}const list=read();const item={...d,id:editing||String(Date.now()),total:update()};const i=list.findIndex(p=>p.id===item.id);if(i>=0)list[i]=item;else list.push(item);if(write(list)){$('status').textContent='Proyecto guardado en este navegador.';editing=item.id;render()}});$('reset').addEventListener('click',()=>{editing=null;ids.forEach(id=>{if($(id).tagName==='SELECT')$(id).selectedIndex=0;else $(id).value='' });$('guests').value=80;$('status').textContent='Nuevo proyecto listo.';update()});$('print').addEventListener('click',()=>window.print());update();render();
 })();
 </script>
-<div style="max-width:900px;margin:28px auto;padding:16px 22px;border:1px solid #b99452;border-radius:12px;text-align:center;color:#b99452;background:#161616;font-family:Arial,sans-serif"><strong>VISION EXPERIENCE PRO · Solo diseño digital</strong><p style="color:#ddd">Diseña y visualiza tus ideas. No organizamos ni ejecutamos eventos ni proyectos físicos. Las imágenes con IA y los pagos todavía no están activos en esta demostración.</p></div></body></html>
-<a href="vision-experience-pro-mi-proyecto.html"
-   style="
-     display:block;
-     max-width:350px;
-     margin:35px auto;
-     padding:18px 25px;
-     background:#d4af70;
-     color:#17130d;
-     text-align:center;
-     text-decoration:none;
-     font-family:Arial,sans-serif;
-     font-weight:bold;
-     border-radius:10px;
-     box-shadow:0 5px 20px #0004;
-   
-<a href="vision-experience-pro-mi-proyecto-video.html">
-  ✨ CREA TU PROYECTO
-</a>
-
-  
-</a>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VISION EXPERIENCE PRO</title>
-</head>
-<body style="background:#111;color:#d4af37;text-align:center;padding:60px;font-family:Arial">
-<h1>VISION EXPERIENCE PRO</h1>
-<p style="color:white">Mi plataforma está funcionando.</p>
-<button onclick="alert('Bienvenida a VISION EXPERIENCE PRO')">Comenzar</button>
-<div style="max-width:900px;margin:28px auto;padding:16px 22px;border:1px solid #b99452;border-radius:12px;text-align:center;color:#b99452;background:#161616;font-family:Arial,sans-serif"><strong>VISION EXPERIENCE PRO · Solo diseño digital</strong><p style="color:#ddd">Diseña y visualiza tus ideas. No organizamos ni ejecutamos eventos ni proyectos físicos. Las imágenes con IA y los pagos todavía no están activos en esta demostración.</p></div></body>
+</body>
 </html>
+
+
