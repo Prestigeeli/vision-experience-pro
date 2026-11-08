@@ -6,6 +6,106 @@
 <style>
 :root{--bg:#101010;--panel:#1b1a18;--line:#4c4030;--gold:#d8b777;--cream:#f5eee2;--muted:#b7ad9c}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--cream);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}header{padding:28px 5%;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.brand{font-family:Georgia,serif;color:var(--gold);font-size:clamp(22px,3vw,34px);letter-spacing:3px}.tag{font-size:12px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}.wrap{max-width:1170px;margin:auto;padding:30px 20px 65px}.intro{padding:22px 0 30px}.intro h1{font:normal clamp(32px,5vw,58px)/1.1 Georgia,serif;margin:12px 0}.intro p{color:var(--muted);max-width:680px}.layout{display:grid;grid-template-columns:minmax(300px,420px) minmax(300px,1fr);gap:22px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:25px}h2{font:normal 27px Georgia,serif;color:var(--gold);margin:0 0 15px}h3{color:var(--gold);font-weight:500}label{display:block;color:var(--muted);font-size:13px;margin:15px 0 6px}input,select,textarea{width:100%;background:#111;border:1px solid #66543b;border-radius:7px;color:var(--cream);padding:12px;font:inherit}textarea{min-height:80px;resize:vertical}input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}button{background:var(--gold);border:1px solid var(--gold);border-radius:7px;padding:12px 16px;color:#15110c;font-weight:700;cursor:pointer}button.secondary{background:transparent;color:var(--gold)}button:focus-visible{outline:3px solid white;outline-offset:3px}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.visual{min-height:320px;border-radius:12px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 70%,#bca174 0%,#554437 35%,#201d1a 75%);display:flex;align-items:flex-end;justify-content:center}.visual:before{content:'';position:absolute;inset:10% 7% 28%;border:4px solid rgba(240,219,185,.55);border-bottom:0;border-radius:170px 170px 0 0;box-shadow:0 0 60px #e6bf8e44}.flowers{position:absolute;top:9%;left:0;right:0;text-align:center;font-size:clamp(33px,6vw,67px);letter-spacing:2px;filter:drop-shadow(0 5px 8px #0009)}.tabledecor{position:relative;width:80%;height:105px;background:linear-gradient(#eee0cc,#a88e6d);border-radius:50% 50% 12px 12px;box-shadow:0 15px 30px #0009;display:flex;justify-content:center;align-items:flex-start;padding-top:10px}.tabledecor span{font-size:42px}.preview-caption{position:absolute;bottom:12px;left:14px;right:14px;text-align:center;background:#0d0b0acb;padding:7px;font-size:13px;color:#fff}.small{font-size:12px;color:var(--muted)}.price{font-size:34px;color:var(--gold);font-family:Georgia,serif;margin:7px 0}.summary{margin-top:18px;border-top:1px solid var(--line);padding-top:12px}.summary p{margin:5px 0}.project{border-bottom:1px solid var(--line);padding:12px 0}.project:last-child{border:0}.project strong{color:var(--gold)}.project button{padding:7px 10px;font-size:12px;margin:5px 6px 0 0}.wide{margin-top:22px}.notice{color:#f1c78e}footer{text-align:center;color:var(--muted);padding:24px;border-top:1px solid var(--line)}@media(max-width:800px){.layout{grid-template-columns:1fr}.panel{padding:19px}}@media print{body{background:white;color:black}.panel{border:1px solid #bbb;background:white;color:black}.brand,h2,h3,.price{color:#775222}.buttons,header .tag,#savedSection{display:none}.layout{display:block}.visual{min-height:220px}header{padding:12px}}
 </style>
+
+<style>
+#aviso-cookies {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  background: #171717;
+  color: #f5eee2;
+  border-top: 2px solid #d8b777;
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+#aviso-cookies button {
+  margin: 8px;
+  padding: 12px 20px;
+  border: 1px solid #d8b777;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+#aceptar-cookies {
+  background: #d8b777;
+  color: #111;
+}
+#rechazar-cookies {
+  background: #171717;
+  color: #f5eee2;
+}
+</style>
+<script>
+(function () {
+  const analyticsId = "G-RXEHE0LC9Z";
+
+  function activarAnalytics() {
+    if (window.visionAnalyticsActivo) return;
+    window.visionAnalyticsActivo = true;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+
+    window.gtag("js", new Date());
+    window.gtag("config", analyticsId);
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src =
+      "https://www.googletagmanager.com/gtag/js?id=" +
+      analyticsId;
+    document.head.appendChild(script);
+  }
+
+  function mostrarAviso() {
+    const decision = localStorage.getItem("vision_cookies");
+
+    if (decision === "aceptadas") {
+      activarAnalytics();
+      return;
+    }
+
+    if (decision === "rechazadas") return;
+
+    const aviso = document.createElement("div");
+    aviso.id = "aviso-cookies";
+    aviso.innerHTML = `
+      <p>Utilizamos cookies analíticas opcionales
+      para conocer las visitas y mejorar
+      VISION EXPERIENCE PRO.</p>
+      <p><a href="politica-de-privacidad.html" style="color:#d8b777;">Información de privacidad y cookies</a></p>
+      <button id="aceptar-cookies">Aceptar</button>
+      <button id="rechazar-cookies">Rechazar</button>
+    `;
+    document.body.appendChild(aviso);
+
+    document.getElementById("aceptar-cookies").onclick =
+      function () {
+        localStorage.setItem("vision_cookies", "aceptadas");
+        aviso.remove();
+        activarAnalytics();
+      };
+
+    document.getElementById("rechazar-cookies").onclick =
+      function () {
+        localStorage.setItem("vision_cookies", "rechazadas");
+        aviso.remove();
+      };
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", mostrarAviso);
+  } else {
+    mostrarAviso();
+  }
+})();
+</script>
+
 </head>
 <body>
 
@@ -63,6 +163,12 @@ function render(){const root=$('projects');root.replaceChildren();const items=re
 ids.forEach(id=>$(id).addEventListener('input',update));$('save').addEventListener('click',()=>{const d=data();if(!d.name.trim()){$('status').textContent='Escribe un nombre para el proyecto.';$('name').focus();return}const list=read();const item={...d,id:editing||String(Date.now()),total:update()};const i=list.findIndex(p=>p.id===item.id);if(i>=0)list[i]=item;else list.push(item);if(write(list)){$('status').textContent='Proyecto guardado en este navegador.';editing=item.id;render()}});$('reset').addEventListener('click',()=>{editing=null;ids.forEach(id=>{if($(id).tagName==='SELECT')$(id).selectedIndex=0;else $(id).value='' });$('guests').value=80;$('status').textContent='Nuevo proyecto listo.';update()});$('print').addEventListener('click',()=>window.print());update();render();
 })();
 </script>
+<p style="text-align:center;font-size:13px;color:#d8b777;">
+Utilizamos Google Analytics únicamente con tu consentimiento para conocer las visitas y mejorar nuestra plataforma. Puedes aceptar, rechazar o cambiar tu elección en cualquier momento.
+</p>
+
+  <button type="button" onclick="localStorage.removeItem('vision_cookies'); location.reload();" style="background:#171717;color:#d8b777;border:1px solid #d8b777;border-radius:6px;padding:10px;cursor:pointer;">Configuración de cookies</button>
+
 </body>
 </html>
 
