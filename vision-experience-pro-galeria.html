@@ -34,7 +34,39 @@ const sectors=[
 {id:'viviendas',name:'Viviendas',icon:'🏡',ideas:[['Salón contemporáneo','Texturas y luz natural','https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85'],['Espacio acogedor','Decoración cálida','https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85'],['Diseño minimalista','Equilibrio y serenidad','https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=85']]}
 ];const $=id=>document.getElementById(id);let sector=0,idea=0,palette='Dorado y marfil',light='Cálida',uploadURL='';const palettes=['Dorado y marfil','Rosa empolvado','Verde natural','Blanco y negro','Tonos tierra'];const lights=['Cálida','Natural','Velas y ambiente','Escénica'];const KEY='vision-experience-pro-galeria-v1';
 function makeButton(label,active,fn,cls=''){const b=document.createElement('button');b.type='button';b.textContent=label;b.className=(active?'active':'outline')+' '+cls;b.setAttribute('aria-pressed',String(active));b.onclick=fn;return b}
-function render(){const s=sectors[sector],chosen=s.ideas[idea];$('filters').replaceChildren(...sectors.map((x,i)=>makeButton(x.icon + ' ' + (idiomaGaleria === "en" ? nombresSectores[x.id] : x.name),i===sector,()=>{sector=i;idea=0;if(uploadURL){URL.revokeObjectURL(uploadURL);uploadURL='';$('upload').value=''}render()})));$('sectorTitle').textContent=s.name+' · Tu estilo';$('heroTitle').textContent=chosen[0];$('heroSubtitle').textContent=chosen[1];const hero=$('hero');hero.style.display='block';hero.onerror=()=>{hero.style.display='none'};hero.src=uploadURL||chosen[2];hero.alt=uploadURL?'Fotografía cargada por el usuario':'Inspiración de '+chosen[0];$('gallery').replaceChildren(...s.ideas.map((item,i)=>{const b=document.createElement('button');b.className='mini'+(i===idea?' selected':'');b.type='button';b.setAttribute('aria-pressed',String(i===idea));const img=document.createElement('img');img.src=item[2];img.alt='';img.loading='lazy';img.onerror=()=>{const f=document.createElement('div');f.className='fallback';f.textContent=s.icon;img.replaceWith(f)};const span=document.createElement('span');span.textContent=item[0];b.append(img,span);b.onclick=()=>{idea=i;if(uploadURL){URL.revokeObjectURL(uploadURL);uploadURL='';$('upload').value=''}render()};return b}));$('palettes').replaceChildren(...palettes.map(x=>makeButton(x,x===palette,()=>{palette=x;render()},'choice')));$('lights').replaceChildren(...lights.map(x=>makeButton(x,x===light,()=>{light=x;render()},'choice')));$('summary').textContent=summary()}
+function render(){const s=sectors[sector],chosen=s.ideas[idea];$('filters').replaceChildren(...sectors.map((x,i)=>makeButton(x.icon + ' ' + (idiomaGaleria === "en" ? nombresSectores[x.id] : x.name),i===sector,()=>{sector=i;idea=0;if(uploadURL){URL.revokeObjectURL(uploadURL);uploadURL='';$('upload').value=''}render()})));$('sectorTitle').textContent=(idiomaGaleria === "en" ? nombresSectores[s.id] + " · Your style" : s.name + " · Tu estilo");$('heroTitle').textContent = idiomaGaleria === "en"
+  ? ({
+      "Ceremonia romántica": "Romantic ceremony",
+      "Gala sofisticada": "Sophisticated gala",
+      "Cena elegante": "Elegant dinner",
+      "Suite exclusiva": "Exclusive suite",
+      "Salón contemporáneo": "Contemporary living room"
+    }[chosen[0]] || chosen[0])
+  : chosen[0];;$('heroSubtitle').textContent = idiomaGaleria === "en"
+  ? ({
+      "Rosas blancas y un ambiente de ensueño": "White roses and a dreamy atmosphere",
+      "Una noche inolvidable": "An unforgettable evening",
+      "Iluminación cálida y mesas refinadas": "Warm lighting and elegant tables",
+      "Confort y diseño": "Comfort and design",
+      "Texturas y luz natural": "Textures and natural light"
+    }[chosen[1]] || chosen[1])
+  : chosen[1];;const hero=$('hero');hero.style.display='block';hero.onerror=()=>{hero.style.display='none'};hero.src=uploadURL||chosen[2];hero.alt=uploadURL?'Fotografía cargada por el usuario':'Inspiración de '+chosen[0];$('gallery').replaceChildren(...s.ideas.map((item,i)=>{const b=document.createElement('button');b.className='mini'+(i===idea?' selected':'');b.type='button';b.setAttribute('aria-pressed',String(i===idea));const img=document.createElement('img');img.src=item[2];img.alt='';img.loading='lazy';img.onerror=()=>{const f=document.createElement('div');f.className='fallback';f.textContent=s.icon;img.replaceWith(f)};const span=document.createElement('span');span.textContent=item[0];b.append(img,span);b.onclick=()=>{idea=i;if(uploadURL){URL.revokeObjectURL(uploadURL);uploadURL='';$('upload').value=''}render()};return b}));$('palettes').replaceChildren(...palettes.map(x=>makeButton(
+  idiomaGaleria === "en"
+    ? ({
+        "Dorado y marfil": "Gold and ivory",
+        "Rosa empolvado": "Dusty rose",
+        "Verde natural": "Natural green",
+        "Blanco y negro": "Black and white",
+        "Tonos tierra": "Earth tones"
+      }[x] || x)
+    : x,
+  x===palette,
+  ()=>{palette=x;render()},'choice')));$('lights').replaceChildren(...lights.map(x=>makeButton(
+  x,
+  x===light,
+  ()=>{light=x;render()},
+  'choice'
+)));$('summary').textContent=summary()}
 function state(){return {sector:sectors[sector].id,idea,palette,light,name:$('projectName').value,details:$('details').value}}
 function summary(){const s=sectors[sector],d=state();return 'VISION EXPERIENCE PRO\nTipo: '+s.name+'\nInspiración: '+s.ideas[idea][0]+'\nNombre: '+(d.name||'Sin definir')+'\nColores: '+palette+'\nIluminación: '+light+'\nDetalles: '+(d.details||'Sin definir')+'\n\nInspiración conceptual. No es una visualización IA ni un presupuesto comercial.'}
 $('projectName').oninput=render;$('details').oninput=render;$('upload').onchange=e=>{const f=e.target.files[0];if(!f)return;if(!f.type.startsWith('image/')){$('status').textContent='Selecciona una imagen válida.';return}if(uploadURL)URL.revokeObjectURL(uploadURL);uploadURL=URL.createObjectURL(f);$('status').textContent='Fotografía cargada como referencia (no se guarda).';render()};$('save').onclick=()=>{try{localStorage.setItem(KEY,JSON.stringify(state()));$('status').textContent='Selección guardada en este navegador.'}catch{$('status').textContent='No se pudo guardar en este navegador.'}};$('download').onclick=()=>{const blob=new Blob([summary()],{type:'text/plain;charset=utf-8'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='VISION_EXPERIENCE_PRO_propuesta.txt';a.click();setTimeout(()=>URL.revokeObjectURL(u),2000)};
