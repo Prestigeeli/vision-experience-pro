@@ -130,7 +130,9 @@
 
 <header><div><div class="brand">VISION EXPERIENCE PRO</div><div class="tag">Diseña · Visualiza · Presenta</div></div><div class="tag">Estudio creativo · Versión de demostración</div></header>
 <main class="wrap">
-<div class="intro"><div class="tag">Una experiencia antes de hacerla realidad</div><h1>Imagina cada detalle.<br>Diseña una experiencia única.</h1><p>Crea una propuesta visual, personaliza la decoración y guarda tus ideas para explorarlas cuando quieras.</p></div>
+<div class="intro"><div class="tag">Una experiencia antes de hacerla realidad</div>
+<h1 id="titulo-principal">Imagina cada detalle.<br>Diseña una experiencia única.</h1>
+<p>Crea una propuesta visual, personaliza la decoración y guarda tus ideas para explorarlas cuando quieras.</p></div>
 <div class="layout">
 <section class="panel" aria-labelledby="design-title"><h2 id="design-title">01 · Tu proyecto</h2>
 <label for="client">Tu nombre (opcional)</label><input id="client" placeholder="Ej. Ana y Marcos" autocomplete="off">
@@ -182,6 +184,14 @@ Utilizamos Google Analytics únicamente con tu consentimiento para conocer las v
 
 <script>
 function cambiarIdioma(idioma) {
+  
+const titulo = document.getElementById("titulo-principal");
+
+if (titulo) {
+  titulo.innerHTML = idioma === "en"
+    ? "Imagine every detail.<br>Design a unique experience."
+    : "Imagina cada detalle.<br>Diseña una experiencia única.";
+}
   const traducciones = {
     "INICIAR SESIÓN / CREAR MI CUENTA":
       "LOG IN / CREATE MY ACCOUNT",
