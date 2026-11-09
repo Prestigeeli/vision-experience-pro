@@ -151,8 +151,10 @@
 <section class="panel wide" id="savedSection"><h2>03 · Mis proyectos</h2><p class="small">Se guardan únicamente en este navegador y dispositivo. No introduzcas datos personales reales de clientes en esta demostración pública.</p><div id="projects"></div></section>
 
 <section class="panel wide">
-  <h2>05 · Explora y diseña tu espacio</h2>
-  <p>Descubre inspiración para bodas, eventos,
+  
+<h2 id="titulo-galeria">05 · Explora y diseña tu espacio</h2>
+
+  <<p id="descripcion-galeria">>Descubre inspiración para bodas, eventos,
      restaurantes, hoteles y viviendas.</p>
   <iframe
     src="vision-experience-pro-galeria.html"
@@ -192,6 +194,21 @@ if (titulo) {
     ? "Imagine every detail.<br>Design a unique experience."
     : "Imagina cada detalle.<br>Diseña una experiencia única.";
 }
+const tituloGaleria = document.getElementById("titulo-galeria");
+const descripcionGaleria = document.getElementById("descripcion-galeria");
+
+if (tituloGaleria) {
+  tituloGaleria.textContent = idioma === "en"
+    ? "05 · Explore and design your space"
+    : "05 · Explora y diseña tu espacio";
+}
+
+if (descripcionGaleria) {
+  descripcionGaleria.textContent = idioma === "en"
+    ? "Discover inspiration for weddings, events, restaurants, hotels and homes."
+    : "Descubre inspiración para bodas, eventos, restaurantes, hoteles y viviendas.";
+}
+
   const traducciones = {
     "INICIAR SESIÓN / CREAR MI CUENTA":
       "LOG IN / CREATE MY ACCOUNT",
