@@ -157,7 +157,7 @@
   <<p id="descripcion-galeria">>Descubre inspiración para bodas, eventos,
      restaurantes, hoteles y viviendas.</p>
   <iframe
-    src="vision-experience-pro-galeria.html"
+    id="galeria-iframe" src="vision-experience-pro-galeria.html?lang=es"
     title="Galería interactiva VISION EXPERIENCE PRO"
     style="width:100%;height:1800px;border:1px solid #d8b777;border-radius:12px;background:#111">
   </iframe>
@@ -186,7 +186,14 @@ Utilizamos Google Analytics únicamente con tu consentimiento para conocer las v
 
 <script>
 function cambiarIdioma(idioma) {
-  
+ 
+const galeria = document.getElementById("galeria-iframe");
+
+if (galeria) {
+  const nuevoIdioma = idioma === "en" ? "en" : "es";
+  galeria.src = "vision-experience-pro-galeria.html?lang=" + nuevoIdioma;
+}
+ 
 const titulo = document.getElementById("titulo-principal");
 
 if (titulo) {
@@ -199,8 +206,8 @@ const descripcionGaleria = document.getElementById("descripcion-galeria");
 
 if (tituloGaleria) {
   tituloGaleria.textContent = idioma === "en"
-    ? "05 · Explore and design your space"
-    : "05 · Explora y diseña tu espacio";
+    ? "02 · Explore and design your space"
+    : "02 · Explora y diseña tu espacio";
 }
 
 if (descripcionGaleria) {
