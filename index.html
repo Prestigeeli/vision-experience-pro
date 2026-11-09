@@ -109,6 +109,17 @@
 </head>
 <body>
 
+<div style="text-align:right;background:#101010;padding:12px 20px;">
+  <button type="button" onclick="cambiarIdioma('es')"
+    style="background:#d8b777;color:#101010;padding:8px;border:0;cursor:pointer;">
+    🇪🇸 Español
+  </button>
+  <button type="button" onclick="cambiarIdioma('en')"
+    style="background:#d8b777;color:#101010;padding:8px;border:0;cursor:pointer;">
+    🇬🇧 English
+  </button>
+</div>
+
 <nav style="padding:18px;text-align:center;background:#101010;">
   <a href="vision-experience-registro.html"
      style="color:#d8b777;font-weight:bold;text-decoration:none;">
@@ -168,6 +179,62 @@ Utilizamos Google Analytics únicamente con tu consentimiento para conocer las v
 </p>
 
   <button type="button" onclick="localStorage.removeItem('vision_cookies'); location.reload();" style="background:#171717;color:#d8b777;border:1px solid #d8b777;border-radius:6px;padding:10px;cursor:pointer;">Configuración de cookies</button>
+
+<script>
+function cambiarIdioma(idioma) {
+  const traducciones = {
+    "INICIAR SESIÓN / CREAR MI CUENTA":
+      "LOG IN / CREATE MY ACCOUNT",
+    "Diseña · Visualiza · Presenta":
+      "Design · Visualize · Present",
+    "Una experiencia antes de hacerla realidad":
+      "Experience it before making it real",
+    "01 · Tu proyecto":
+      "01 · Your project",
+    "Tu nombre (opcional)":
+      "Your name (optional)",
+    "Nombre del proyecto":
+      "Project name",
+    "Tipo de proyecto":
+      "Project type",
+    "Estilo":
+      "Style",
+    "Flores":
+      "Flowers",
+    "Iluminación":
+      "Lighting",
+    "Mobiliario":
+      "Furniture",
+    "Número de invitados":
+      "Number of guests"
+  };
+
+  if (!window.textosOriginales) {
+    window.textosOriginales = new Map();
+  }
+
+  const elementos = document.querySelectorAll(
+    "nav a, header .tag, .intro .tag, h2, label"
+  );
+
+  elementos.forEach(elemento => {
+    if (!window.textosOriginales.has(elemento)) {
+      window.textosOriginales.set(
+        elemento, elemento.textContent
+      );
+    }
+
+    const original = window.textosOriginales.get(elemento);
+    const clave = original.trim();
+
+    elemento.textContent = idioma === "en"
+      ? (traducciones[clave] || original)
+      : original;
+  });
+
+  document.documentElement.lang = idioma;
+}
+</script>
 
 </body>
 </html>
